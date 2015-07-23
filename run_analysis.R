@@ -1,16 +1,22 @@
 
 ## Load Libraries, Directories and Files
+# Find and set wd
+wd <- getwd()
+fileURL <- "http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+
+# Download File to zip file
+filename = "UCI HAR Dataset.zip"
 
 # One-time Unzip
 # setwd("~/Documents/Classes/MOOCs/R Data Wrangling/data")
-# filename = "UCI HAR Dataset.zip"
-# unzip(filename)
+download.file(fileURL, destfile=filename, method="curl")
+unzip(filename)
 
 # Libraries
 library("dplyr")
 
 # Change Working Directory
-setwd("~/Documents/Classes/MOOCs/R Data Wrangling/data/UCI HAR Dataset")
+# setwd("~/Documents/Classes/MOOCs/R Data Wrangling/data/UCI HAR Dataset")
 
 # Labels & Features
 
@@ -18,10 +24,14 @@ Labels <- read.fwf(file="activity_labels.txt", widths=c(2, 20))
 colnames(Labels) <- c("LabelType","LabelName")
 Features <- read.fwf(file="features.txt", widths=c(2, 34))
 
+# Remove Punctuation
+#Features <- gsub("[^[:alnum:]]","",Features[,2])
+Features <- gsub("[[:punct:]]","",Features[,2])
+
 # Test Data
 
 Subject_Test <- read.fwf(file="test/subject_test.txt", widths=c(3), col.names = "Participant")
-X_Test <- read.table("test/X_test.txt", col.names = Features$V2)
+X_Test <- read.table("test/X_test.txt", col.names = Features)
 Y_Test <- read.fwf(file="test/y_test.txt", widths=c(2), col.names = "LabelType")
 
 dataTest = cbind(Subject_Test,Y_Test,X_Test)
@@ -31,7 +41,7 @@ rm(list = c("Subject_Test","Y_Test","X_Test"))
 # Train Data
 
 Subject_Train <- read.fwf(file="train/subject_train.txt", widths=c(3), col.names = "Participant")
-X_Train <- read.table("train/X_train.txt", col.names = Features$V2)
+X_Train <- read.table("train/X_train.txt", col.names = Features)
 Y_Train <- read.fwf(file="train/y_train.txt", widths=c(2), col.names = "LabelType")
 
 dataTrain = cbind(Subject_Train,Y_Train,X_Train)
@@ -57,9 +67,26 @@ dataSet <- cbind(otherVar,part1, part2)
 rm(list = c("part1","part2","otherVar"))
 
 # Uses descriptive activity names to name the activities in the data set
-# 86 variables
+# 79 feature variables
+names <- names(dataSet[4:82])
 
-names <- names(dataSet)
+# use regex to remove "X." or "X#." prefix on multiple field names
+names <- gsub("[0-9]","",names)
+names <- gsub("^[X\\.]?","",names)
+names <- gsub("^\\.","",names)
+
+origNames <- c("BodyAcc","GravityAcc","BodyGyro","Acc","Mag","meanFreq","mean","std","X","Y","Z","^t","^f")
+newNames <- c("Body","Gravity","Gyroscope","Accelerator","Magnitude","MeanFreq","Mean","SD","X","Y","Z","Time","Freq")
+
+# origNames -> newNames mapping
+for (i in seq(1,length(origNames),1))
+  names <- gsub(origNames[i],newNames[i],names)
+
+oldnames <- names(dataSet)
+oldnames <- oldnames[4:82]  #features only, i.e. exclude id, labels and train/test flag
+
+library(data.table)
+setnames(dataSet, old = oldnames, new = names)
 
 # Appropriately labels the data set with descriptive variable names. 
 # Give Labels a Name
@@ -72,6 +99,8 @@ sumData <- dataSet %>% count(Participant,LabelName,DataFlag)
 dim(sumData)
 
 # final tidy dataset will be 180 rows
-newData <- dataSet %>% group_by(Participant,LabelName,DataFlag) %>% summarise_each(funs(mean))
+TidyDataSet <- dataSet %>% group_by(Participant,LabelName,DataFlag) %>% summarise_each(funs(mean))
 
 ## Use dput(TidyDataSet, file = "TidyDataSet.R")
+
+write.table(TidyDataSet, file = "TidyDataSet.txt", row.name=FALSE) 
