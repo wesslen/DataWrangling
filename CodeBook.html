@@ -113,16 +113,524 @@ img {
 </div>
 <div id="description-of-the-variables-in-the-tiny_data.txt-file" class="section level2">
 <h2>Description of the variables in the tiny_data.txt file</h2>
-<p>General description of the file including: - Dimensions of the dataset - Summary of the data - Variables present in the dataset</p>
-<p>(you can easily use Rcode for this, just load the dataset and provide the information directly form the tidy data file)</p>
-<div id="variable-1-repeat-this-section-for-all-variables-in-the-dataset" class="section level3">
-<h3>Variable 1 (repeat this section for all variables in the dataset)</h3>
-<p>Short description of what the variable describes.</p>
-<p>Some information on the variable including: - Class of the variable - Unique values/levels of the variable - Unit of measurement (if no unit of measurement list this as well) - In case names follow some schema, describe how entries were constructed (for example time-body-gyroscope-z has 4 levels of descriptors. Describe these 4 levels).</p>
-<p>(you can easily use Rcode for this, just load the dataset and provide the information directly form the tidy data file)</p>
+<p>The tiny_data file contains 180 rows and 83 columns (variables). One variable is an ID, one variable identifies whether the record was in the test or training data set, two variables are labels (activities) and the remaining 79 variables are attributes for each measurement.</p>
+<p>Each row reprsents one of 30 participant’s measurements for one of six activities (as 30 x 6 = 180 rows).</p>
+<p>Below is a description of the 83 columns in the dataset.</p>
+<div id="variable-list" class="section level3">
+<h3>Variable List</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Var#</th>
+<th align="left">Variable Name</th>
+<th align="left">Format</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">Participant</td>
+<td align="left">int</td>
+<td align="left">Participant ID</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">LabelName</td>
+<td align="left">Fact</td>
+<td align="left">Activity (Label) Name</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">DataFlag</td>
+<td align="left">chr</td>
+<td align="left">Test or Training Dataset</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">LabelType</td>
+<td align="left">num</td>
+<td align="left">Activity (Label) Type</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">TimeBodyMeanX</td>
+<td align="left">num</td>
+<td align="left">Time-Body Mean X</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">TimeBodyMeanY</td>
+<td align="left">num</td>
+<td align="left">Time-Body Mean Y</td>
+</tr>
+<tr class="odd">
+<td align="left">7</td>
+<td align="left">TimeBodyMeanZ</td>
+<td align="left">num</td>
+<td align="left">Time-Body Mean Z</td>
+</tr>
+<tr class="even">
+<td align="left">8</td>
+<td align="left">TimeGravityMeanX</td>
+<td align="left">num</td>
+<td align="left">Time-Gravity Mean X</td>
+</tr>
+<tr class="odd">
+<td align="left">9</td>
+<td align="left">TimeGravityMeanY</td>
+<td align="left">num</td>
+<td align="left">Time-Gravity Mean Y</td>
+</tr>
+<tr class="even">
+<td align="left">10</td>
+<td align="left">TimeGravityMeanZ</td>
+<td align="left">num</td>
+<td align="left">Time-Gravity Mean Z</td>
+</tr>
+<tr class="odd">
+<td align="left">11</td>
+<td align="left">TimeBodyJerkMeanX</td>
+<td align="left">num</td>
+<td align="left">Time-Body-Jerk Mean X</td>
+</tr>
+<tr class="even">
+<td align="left">12</td>
+<td align="left">TimeBodyJerkMeanY</td>
+<td align="left">num</td>
+<td align="left">Time-Body-Jerk Mean Y</td>
+</tr>
+<tr class="odd">
+<td align="left">13</td>
+<td align="left">TimeBodyJerkMeanZ</td>
+<td align="left">num</td>
+<td align="left">Time-Body-Jerk Mean Z</td>
+</tr>
+<tr class="even">
+<td align="left">14</td>
+<td align="left">TimeGyroscopeMeanX</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope Mean X</td>
+</tr>
+<tr class="odd">
+<td align="left">15</td>
+<td align="left">TimeGyroscopeMeanY</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope Mean Y</td>
+</tr>
+<tr class="even">
+<td align="left">16</td>
+<td align="left">TimeGyroscopeMeanZ</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope Mean Z</td>
+</tr>
+<tr class="odd">
+<td align="left">17</td>
+<td align="left">TimeGyroscopeJerkMeanX</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope-Jerk Mean X</td>
+</tr>
+<tr class="even">
+<td align="left">18</td>
+<td align="left">TimeGyroscopeJerkMeanY</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope-Jerk Mean Y</td>
+</tr>
+<tr class="odd">
+<td align="left">19</td>
+<td align="left">TimeGyroscopeJerkMeanZ</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope-Jerk Mean Z</td>
+</tr>
+<tr class="even">
+<td align="left">20</td>
+<td align="left">TimeBodyMagnitudeMean</td>
+<td align="left">num</td>
+<td align="left">Time-Body-Magnitude Mean</td>
+</tr>
+<tr class="odd">
+<td align="left">21</td>
+<td align="left">TimeGravityMagnitudeMean</td>
+<td align="left">num</td>
+<td align="left">Time-Gravity-Magnitude Mean</td>
+</tr>
+<tr class="even">
+<td align="left">22</td>
+<td align="left">TimeBodyJerkMagnitudeMean</td>
+<td align="left">num</td>
+<td align="left">Time-Body-Jerk-Magnitude Mean</td>
+</tr>
+<tr class="odd">
+<td align="left">23</td>
+<td align="left">TimeGyroscopeMagnitudeMean</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope-Magnitude Mean</td>
+</tr>
+<tr class="even">
+<td align="left">24</td>
+<td align="left">TimeGyroscopeJerkMagnitudeMean</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope-Jerk-Magnitude Mean</td>
+</tr>
+<tr class="odd">
+<td align="left">25</td>
+<td align="left">FreqBodyMeanX</td>
+<td align="left">num</td>
+<td align="left">Freq-Body Mean X</td>
+</tr>
+<tr class="even">
+<td align="left">26</td>
+<td align="left">FreqBodyMeanY</td>
+<td align="left">num</td>
+<td align="left">Freq-Body Mean Y</td>
+</tr>
+<tr class="odd">
+<td align="left">27</td>
+<td align="left">FreqBodyMeanZ</td>
+<td align="left">num</td>
+<td align="left">Freq-Body Mean Z</td>
+</tr>
+<tr class="even">
+<td align="left">28</td>
+<td align="left">FreqBodyMeanFreqX</td>
+<td align="left">num</td>
+<td align="left">Freq-Gravity MeanFreq X</td>
+</tr>
+<tr class="odd">
+<td align="left">29</td>
+<td align="left">FreqBodyMeanFreqY</td>
+<td align="left">num</td>
+<td align="left">Freq-Gravity MeanFreq Y</td>
+</tr>
+<tr class="even">
+<td align="left">30</td>
+<td align="left">FreqBodyMeanFreqZ</td>
+<td align="left">num</td>
+<td align="left">Freq-Gravity MeanFreq Z</td>
+</tr>
+<tr class="odd">
+<td align="left">31</td>
+<td align="left">FreqBodyJerkMeanX</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Jerk Mean X</td>
+</tr>
+<tr class="even">
+<td align="left">32</td>
+<td align="left">FreqBodyJerkMeanY</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Jerk Mean Y</td>
+</tr>
+<tr class="odd">
+<td align="left">33</td>
+<td align="left">FreqBodyJerkMeanZ</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Jerk Mean Z</td>
+</tr>
+<tr class="even">
+<td align="left">34</td>
+<td align="left">FreqBodyJerkMeanFreqX</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Jerk MeanFreq X</td>
+</tr>
+<tr class="odd">
+<td align="left">35</td>
+<td align="left">FreqBodyJerkMeanFreqY</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Jerk MeanFreq Y</td>
+</tr>
+<tr class="even">
+<td align="left">36</td>
+<td align="left">FreqBodyJerkMeanFreqZ</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Jerk MeanFreq Z</td>
+</tr>
+<tr class="odd">
+<td align="left">37</td>
+<td align="left">FreqGyroscopeMeanX</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope Mean X</td>
+</tr>
+<tr class="even">
+<td align="left">38</td>
+<td align="left">FreqGyroscopeMeanY</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope Mean Y</td>
+</tr>
+<tr class="odd">
+<td align="left">39</td>
+<td align="left">FreqGyroscopeMeanZ</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope Mean Z</td>
+</tr>
+<tr class="even">
+<td align="left">40</td>
+<td align="left">FreqGyroscopeMeanFreqX</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope MeanFreq X</td>
+</tr>
+<tr class="odd">
+<td align="left">41</td>
+<td align="left">FreqGyroscopeMeanFreqY</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope MeanFreq Y</td>
+</tr>
+<tr class="even">
+<td align="left">42</td>
+<td align="left">FreqGyroscopeMeanFreqZ</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope MeanFreq Z</td>
+</tr>
+<tr class="odd">
+<td align="left">43</td>
+<td align="left">FreqBodyMagnitudeMean</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Magnitude Mean</td>
+</tr>
+<tr class="even">
+<td align="left">44</td>
+<td align="left">FreqBodyMagnitudeMeanFreq</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Magnitude MeanFreq</td>
+</tr>
+<tr class="odd">
+<td align="left">45</td>
+<td align="left">FreqBodyBodyJerkMagnitudeMean</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Jerk-Magnitude Mean</td>
+</tr>
+<tr class="even">
+<td align="left">46</td>
+<td align="left">FreqBodyBodyJerkMagnitudeMeanFreq</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Jerk-Magnitude MeanFreq</td>
+</tr>
+<tr class="odd">
+<td align="left">47</td>
+<td align="left">FreqBodyGyroscopeMagnitudeMean</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope-Magnitude Mean</td>
+</tr>
+<tr class="even">
+<td align="left">48</td>
+<td align="left">FreqBodyGyroscopeMagnitudeMeanFreq</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope-Magnitude MeanFreq</td>
+</tr>
+<tr class="odd">
+<td align="left">49</td>
+<td align="left">FreqBodyGyroscopeJerkMagnitudeMean</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope-Jerk-Magnitude Mean</td>
+</tr>
+<tr class="even">
+<td align="left">50</td>
+<td align="left">FreqBodyGyroscopeJerkMagnitudeMeanFreq</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope-Jerk-Magnitude MeanFreq</td>
+</tr>
+<tr class="odd">
+<td align="left">51</td>
+<td align="left">TimeBodySDX</td>
+<td align="left">num</td>
+<td align="left">Time-Body Std Dev X</td>
+</tr>
+<tr class="even">
+<td align="left">52</td>
+<td align="left">TimeBodySDY</td>
+<td align="left">num</td>
+<td align="left">Time-Body Std Dev Y</td>
+</tr>
+<tr class="odd">
+<td align="left">53</td>
+<td align="left">TimeBodySDZ</td>
+<td align="left">num</td>
+<td align="left">Time-Body Std Dev Z</td>
+</tr>
+<tr class="even">
+<td align="left">54</td>
+<td align="left">TimeGravitySDX</td>
+<td align="left">num</td>
+<td align="left">Time-Gravity Std Dev X</td>
+</tr>
+<tr class="odd">
+<td align="left">55</td>
+<td align="left">TimeGravitySDY</td>
+<td align="left">num</td>
+<td align="left">Time-Gravity Std Dev Y</td>
+</tr>
+<tr class="even">
+<td align="left">56</td>
+<td align="left">TimeGravitySDZ</td>
+<td align="left">num</td>
+<td align="left">Time-Gravity Std Dev Z</td>
+</tr>
+<tr class="odd">
+<td align="left">57</td>
+<td align="left">TimeBodyJerkSDX</td>
+<td align="left">num</td>
+<td align="left">Time-Body-Jerk Std Dev X</td>
+</tr>
+<tr class="even">
+<td align="left">58</td>
+<td align="left">TimeBodyJerkSDY</td>
+<td align="left">num</td>
+<td align="left">Time-Body-Jerk Std Dev Y</td>
+</tr>
+<tr class="odd">
+<td align="left">59</td>
+<td align="left">TimeBodyJerkSDZ</td>
+<td align="left">num</td>
+<td align="left">Time-Body-Jerk Std Dev Y</td>
+</tr>
+<tr class="even">
+<td align="left">60</td>
+<td align="left">TimeGyroscopeSDX</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope Std Dev X</td>
+</tr>
+<tr class="odd">
+<td align="left">61</td>
+<td align="left">TimeGyroscopeSDY</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope Std Dev Y</td>
+</tr>
+<tr class="even">
+<td align="left">62</td>
+<td align="left">TimeGyroscopeSDZ</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope Std Dev Z</td>
+</tr>
+<tr class="odd">
+<td align="left">63</td>
+<td align="left">TimeGyroscopeJerkSDX</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope-Jerk Std Dev X</td>
+</tr>
+<tr class="even">
+<td align="left">64</td>
+<td align="left">TimeGyroscopeJerkSDY</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope-Jerk Std Dev Y</td>
+</tr>
+<tr class="odd">
+<td align="left">65</td>
+<td align="left">TimeGyroscopeJerkSDZ</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope-Jerk Std Dev Z</td>
+</tr>
+<tr class="even">
+<td align="left">66</td>
+<td align="left">TimeBodyMagnitudeSD</td>
+<td align="left">num</td>
+<td align="left">Time-Body Magnitude Std Dev</td>
+</tr>
+<tr class="odd">
+<td align="left">67</td>
+<td align="left">TimeGravityMagnitudeSD</td>
+<td align="left">num</td>
+<td align="left">Time-Gravity Magnitude Std Dev</td>
+</tr>
+<tr class="even">
+<td align="left">68</td>
+<td align="left">TimeBodyJerkMagnitudeSD</td>
+<td align="left">num</td>
+<td align="left">Time-Body-Jerk Magnitude Std Dev</td>
+</tr>
+<tr class="odd">
+<td align="left">69</td>
+<td align="left">TimeGyroscopeMagnitudeSD</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope Magnitude Std Dev</td>
+</tr>
+<tr class="even">
+<td align="left">70</td>
+<td align="left">TimeGyroscopeJerkMagnitudeSD</td>
+<td align="left">num</td>
+<td align="left">Time-Gyroscope-Jerk Magnitude Std Dev</td>
+</tr>
+<tr class="odd">
+<td align="left">71</td>
+<td align="left">FreqBodySDX</td>
+<td align="left">num</td>
+<td align="left">Freq-Body Std Dev X</td>
+</tr>
+<tr class="even">
+<td align="left">72</td>
+<td align="left">FreqBodySDY</td>
+<td align="left">num</td>
+<td align="left">Freq-Body Std Dev Y</td>
+</tr>
+<tr class="odd">
+<td align="left">73</td>
+<td align="left">FreqBodySDZ</td>
+<td align="left">num</td>
+<td align="left">Freq-Body Std Dev Z</td>
+</tr>
+<tr class="even">
+<td align="left">74</td>
+<td align="left">FreqBodyJerkSDX</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Jerk Std Dev X</td>
+</tr>
+<tr class="odd">
+<td align="left">75</td>
+<td align="left">FreqBodyJerkSDY</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Jerk Std Dev Y</td>
+</tr>
+<tr class="even">
+<td align="left">76</td>
+<td align="left">FreqBodyJerkSDZ</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Jerk Std Dev Z</td>
+</tr>
+<tr class="odd">
+<td align="left">77</td>
+<td align="left">FreqGyroscopeSDX</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope Std Dev X</td>
+</tr>
+<tr class="even">
+<td align="left">78</td>
+<td align="left">FreqGyroscopeSDY</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope Std Dev Y</td>
+</tr>
+<tr class="odd">
+<td align="left">79</td>
+<td align="left">FreqGyroscopeSDZ</td>
+<td align="left">num</td>
+<td align="left">Freq-Gyroscope Std Dev Z</td>
+</tr>
+<tr class="even">
+<td align="left">80</td>
+<td align="left">FreqBodyMagnitudeSD</td>
+<td align="left">num</td>
+<td align="left">Freq-Body Magnitude Std Dev</td>
+</tr>
+<tr class="odd">
+<td align="left">81</td>
+<td align="left">FreqBodyBodyJerkMagnitudeSD</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Jerk Magnitude Std Dev</td>
+</tr>
+<tr class="even">
+<td align="left">82</td>
+<td align="left">FreqBodyGyroscopeMagnitudeSD</td>
+<td align="left">num</td>
+<td align="left">Freq-Body-Gyroscope Magnitude Std Dev</td>
+</tr>
+<tr class="odd">
+<td align="left">83</td>
+<td align="left">FreqBodyGyroscopeJerkMagnitudeSD</td>
+<td align="left">num</td>
+<td align="left">Freq-Body Magnitude-Gyroscope-Jerk Std Dev</td>
+</tr>
+</tbody>
+</table>
 <div id="notes-on-variable-1" class="section level4">
 <h4>Notes on variable 1:</h4>
-<p>If available, some additional notes on the variable not covered elsewehere. If no notes are present leave this section out.</p>
+<p>Variable output was created using the “str()” function.</p>
 </div>
 </div>
 </div>
